@@ -1,0 +1,64 @@
+:root{
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --accent:#2b6cb0;
+  --muted:#666;
+}
+*{box-sizing:border-box}
+body{font-family:Segoe UI, Roboto, Arial, sans-serif;background:var(--bg);color:#222;margin:0}
+.container{max-width:980px;margin:0 auto;padding:20px}
+.site-header{background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.06);}
+.site-header .container{display:flex;align-items:center;justify-content:space-between}
+.site-header h1{font-size:20px;margin:12px 0}
+.site-header nav a{margin-left:12px;color:var(--accent);text-decoration:none}
+h2,h3,h4,h5{color:#123}
+#filters{margin-top:18px}
+.filters button{margin:4px;border:1px solid #ddd;padding:8px 12px;background:#fff;border-radius:6px;cursor:pointer}
+.filters button.active{background:var(--accent);color:white;border-color:var(--accent)}
+.subject{background:var(--card);padding:14px;margin:12px 0;border-radius:8px;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.subject h4{margin:0 0 8px}
+.details{margin-top:8px;color:var(--muted)}
+.week-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin:14px 0}
+.day{
+    background:var(--card);
+    padding:14px;
+    border-radius:8px;
+    text-align:center;
+    cursor:pointer;
+    border:2px solid #e6e6e6;
+    transition: all 0.2s ease;
+    user-select: none;
+    font-weight: 500;
+    position: relative;
+    overflow: hidden;
+}
+.day:hover{
+    box-shadow:0 4px 12px rgba(0,0,0,.1);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+.day:active {
+    transform: translateY(1px);
+}
+.day.active{
+    background:var(--accent);
+    color:white;
+    border-color:var(--accent);
+    box-shadow:0 4px 12px rgba(43,108,176,.2);
+}
+.day-details{background:var(--card);padding:20px;border-radius:8px;margin-top:12px}
+.day-details h4{margin:16px 0 8px}
+.day-details ul{margin:0;padding-left:20px}
+.day-details li{margin:4px 0}
+.day-details p{color:var(--muted);font-style:italic;margin:8px 0}
+@media(max-width:640px){.week-grid{grid-template-columns:repeat(2,1fr)}.site-header .container{flex-direction:column;align-items:flex-start}}
+
+/* Footer and contact */
+footer{margin-top:30px;padding:18px 0;text-align:center;color:var(--muted)}
+
+/* Accessibility helper */
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+/* small util spacing */
+.mt-8{margin-top:8px}
+.mb-8{margin-bottom:8px}

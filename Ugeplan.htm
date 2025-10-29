@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="da">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Ugeplan — Klasse</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container">
+        <h1>Ugeplan</h1>
+        <nav>
+          <a href="Forside.htm">Forside</a>
+          <a href="Ugeplan.htm">Ugeplan</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <section>
+        <h2>Klik på en dag for detaljer</h2>
+        <div class="week-grid">
+          <div class="day" data-day="mandag">Mandag</div>
+          <div class="day" data-day="tirsdag">Tirsdag</div>
+          <div class="day" data-day="onsdag">Onsdag</div>
+          <div class="day" data-day="torsdag">Torsdag</div>
+          <div class="day" data-day="fredag">Fredag</div>
+        </div>
+
+        <div id="day-details" class="day-details">
+          <h3>Vælg en dag</h3>
+          <div id="details-content">Klik på en ugedag for at se lektioner og noter.</div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      // Get all day elements
+      const days = document.querySelectorAll('.day');
+      const detailsContent = document.getElementById('details-content');
+      const dayTitle = document.querySelector('#day-details h3');
+
+      // Schedule data for each day
+      const scheduleData = {
+          mandag: {
+              lessons: [
+                  "08:30 - 09:00: Klander & Morgenrunde",
+                  "09:45 - 11:15: Matematik",
+                  "12:00 - 13:30: Engelsk"
+              ],
+              notes: "Husk idrætstøj"
+          },
+          tirsdag: {
+              lessons: [
+                  "08:30 - 09:00: Klander & Morgenrunde",
+                  "09:45 - 11:15: Fysik/Kemi",
+                  "12:00 - 13:30: Engelsk"
+              ],
+              notes: "Matematikbog medbringes"
+          },
+          onsdag: {
+              lessons: [
+                  "08:30 - 09:00: Klander & Morgenrunde",
+                  "09:45 - 11:15: Idræt",
+                  "12:00 - 13:30: Dansk"
+              ],
+              notes: ""
+          },
+          torsdag: {
+              lessons: [
+                  "08:30 - 09:00: Klander & Morgenrunde",
+                  "09:45 - 11:15: Fysik/Kemi",
+                  "12:00 - 13:30: Dansk"
+              ],
+              notes: "Afleveringsfrist for projekt"
+          },
+          fredag: {
+              lessons: [
+                  "08:30 - 09:00: Klander & Morgenrunde",
+                  "09:45 - 11:15: Idræt",
+                  "12:00 - 13:30: Engelsk"
+              ],
+              notes: "Tidlig fri"
+          }
+      };
+
+      // Function to display schedule for a day
+      function displaySchedule(day) {
+          const dayName = day.getAttribute('data-day');
+          const schedule = scheduleData[dayName];
+          
+          // Update the title
+          dayTitle.textContent = day.textContent;
+          
+          // Create the content HTML
+          let html = '<h4>Lektioner:</h4><ul>';
+          schedule.lessons.forEach(lesson => {
+              html += `<li>${lesson}</li>`;
+          });
+          html += '</ul>';
+        
+          if (schedule.notes) {
+              html += `<h4>Noter:</h4><p>${schedule.notes}</p>`;
+          }
+          
+          // Update the content
+          detailsContent.innerHTML = html;
+          
+          // Update active state
+          days.forEach(d => d.classList.remove('active'));
+          day.classList.add('active');
+      }
+
+      // Add click event to each day
+      days.forEach(day => {
+          day.addEventListener('click', function() {
+              displaySchedule(this);
+          });
+      });
+
+      // Select first day by default
+      if (days.length > 0) {
+          displaySchedule(days[0]);
+      }
+    </script>
+  </body>
+  </html>
